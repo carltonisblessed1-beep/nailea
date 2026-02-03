@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For Nailea 🤍</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      max-width: 430px;
+    }
+
+    h1 {
+      font-size: 1.9rem;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 25px;
+      line-height: 1.5;
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 1rem;
+      border-radius: 25px;
+      border: none;
+      cursor: pointer;
+      background: #ff4d6d;
+      color: white;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.08);
+    }
+
+    #no {
+      background: #ddd;
+      color: #555;
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card" id="card">
+    <h1 id="title">Nailea 🤍</h1>
+    <p id="text">Hey dork, this is something i made for you :O </p>
+    <button onclick="nextStep()">Continue</button>
+  </div>
+
+  <script>
+    let step = 0;
+
+    const sequence = [
+      "Here is everything i know about you from MEMORY... I could write a whole book about you.",
+
+      "Your favorite numbers are 4, 9, and 21.",
+
+      "Your favorite color is cornflower blue. (WHICH IS SO RANDOM BUT SOMEHOW SCREAMS YOU.)",
+
+      "You love coffee especially from Dunkin’, Starbucks, or Dutch Bros.(I think it’s the comfort more than the caffeine.)",
+
+      "You love green pasta, flautas, gorditas… and yes, Waffle House.",
+
+      "Your favorite snacks and drinks are Ferrero, Kit Kats, Kinder, Nutella B-Ready, Oreos, Hot Fries… with Dr Pepper, Strawberry Fanta, or Pineapple Fanta.",
+
+      "You love a wide range of animals being golden shepherds, french bulldogs, corgis… basically any long, fluffy dog.",
+
+      "And also horses, baby bears, red pandas, cheetahs, butterflies, otters 🦦… and a pig like Waddles from Gravity Falls.",
+
+      "Your favorite flowers are lilies, hibiscus, dahlias, and sunflowers.",
+
+      "And I shall gatekeep everything else i know about you for now...",
+
+      "You once said something to me that stayed with me... that it didn’t take us long to know what we needed to know about each other.",
+
+      "That it felt like we’d known each other our whole lives.",
+
+      "Which means alot to me cause it is mutual and i got far on to say that..",
+
+      "I know you feel deeply, even when you don’t always say it.",
+
+      "I know you care in quiet ways that most people miss.",
+
+      "I know your heart looks for meaning, not just moments.",
+
+      "I know you’re stronger than you give yourself credit for."
+    ];
+
+    function nextStep() {
+      const title = document.getElementById("title");
+      const text = document.getElementById("text");
+      const card = document.getElementById("card");
+
+      if (step < sequence.length) {
+        title.innerText = "Something I know about you";
+        text.innerText = sequence[step];
+        step++;
+        return;
+      }
+
+      if (step === sequence.length) {
+        title.innerText = "Just wondering…";
+        text.innerText = "Do you believe some people meet for a reason?";
+        step++;
+        return;
+      }
+
+      if (step === sequence.length + 1) {
+        title.innerText = "One more thought";
+        text.innerText = "Do you think timing matters just as much as feelings?";
+        step++;
+        return;
+      }
+
+      if (step === sequence.length + 2) {
+        title.innerText = "So here it is 💗";
+        text.innerText = "Will you be my Valentine?";
+        card.innerHTML += `
+          <br>
+          <button onclick="yesClicked()">Yes 💘</button>
+          <button id="no" onmouseover="moveNo()">No 🙃</button>
+        `;
+        step++;
+      }
+    }
+
+    function yesClicked() {
+      document.body.innerHTML = `
+        <div style="
+          height:100vh;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          background:linear-gradient(135deg, #ff758c, #ff7eb3);
+          color:white;
+          font-family:Arial;
+          text-align:center;
+          padding:40px;
+        ">
+          <h1>
+            You made my heart smile 🤍<br><br>
+            I release this to God.<br>
+            I trust You with her, and with me.<br>
+            This is offered, not held.
+          </h1>
+        </div>
+      `;
+    }
+
+    function moveNo() {
+      const noBtn = document.getElementById("no");
+      const x = Math.random() * 200 - 100;
+      const y = Math.random() * 200 - 100;
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    }
+  </script>
+
+</body>
+</html>
