@@ -138,8 +138,25 @@
 
       "I know you’re stronger than you give yourself credit for."
     ];
+if (step < sequence.length) {
+        title.innerText = "How well do i know you?";
+        text.innerText = sequence[step];
+        step++;
+        return;
+      }
 
-    function nextStep() {
+      if (step === sequence.length) {
+        title.innerText = "Just wondering…";
+        text.innerText = "Do you believe some people meet for a reason?";
+        step++;
+        return;
+      }
+
+      if (step === sequence.length + 1) {
+        title.innerText = "One more thought";
+        text.innerText = "Do you think timing matters just as much as feelings?";
+        step++;
+        return;    function nextStep() {
       const title = document.getElementById("title");
       const text = document.getElementById("text");
       const card = document.getElementById("card");
