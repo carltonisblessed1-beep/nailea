@@ -15,20 +15,8 @@
       background: linear-gradient(135deg, #6495ed, #6495ed);
       font-family: Arial, sans-serif;
       text-align: center;
-    }
-
-    .gallery {
-      display: flex;
-      gap: 15px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 30px;
-    }
-
-    .gallery img {
-      width: 200px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      padding: 20px;
+      box-sizing: border-box;
     }
 
     .card {
@@ -37,6 +25,7 @@
       border-radius: 20px;
       box-shadow: 0 20px 40px rgba(0,0,0,0.2);
       max-width: 430px;
+      width: 100%;
     }
 
     h1 {
@@ -48,6 +37,7 @@
       font-size: 1.1rem;
       margin-bottom: 25px;
       line-height: 1.5;
+      white-space: pre-line; /* allows line breaks if you add \n */
     }
 
     button {
@@ -74,9 +64,6 @@
 </head>
 
 <body>
-
- 
-  <!-- CARD -->
   <div class="card" id="card">
     <h1 id="title">Nailea 🤍</h1>
     <p id="text">Hey dork, this is something i made for you :O</p>
@@ -110,17 +97,27 @@
       "You became someone who can cheer me up in an INSTANT.",
       "BUT TO TOP IT ALL OFF.",
       "More than anything, in a short amount of time you became my BESTFRIEND :).",
-      "RANDOM THOUGHTS."
-     "you have a beautiful heart.",
+      "RANDOM THOUGHTS.",
+      "you have a beautiful heart.",
       "it does not matter how many flaws you think you have i love them all. i see you and that is enough.",
       "the closer I get to God, the closer i feel to you."
+    ];
+
+    // Extra screens after the sequence
+    const after = [
+      { title: "SO YEAH!!!", text: "You are special to me or whatever... LOSER" },
+      { title: "😭😂😭😂", text: "Did you take a shower today? hehe" },
+      { title: "I AM SO SILLY 🤣(nonchalant btw)", text: "okay but seriously..." },
+      { title: "AND I JUST HAVE ONE QUESTION:", text: "I am going to shoot my shot like I am stephen curry and ask..." }
     ];
 
     function nextStep() {
       const title = document.getElementById("title");
       const text = document.getElementById("text");
       const card = document.getElementById("card");
+      const nextBtn = document.getElementById("nextBtn");
 
+      // 1) Main sequence
       if (step < sequence.length) {
         title.innerText = "How well do i know you?";
         text.innerText = sequence[step];
@@ -128,42 +125,30 @@
         return;
       }
 
-      if (step === sequence.length) {
-        title.innerText = "SO YEAH!!!";
-        text.innerText = "You are special to me or whatever... LOSER";
+      // 2) Extra screens
+      const afterIndex = step - sequence.length;
+      if (afterIndex >= 0 && afterIndex < after.length) {
+        title.innerText = after[afterIndex].title;
+        text.innerText = after[afterIndex].text;
         step++;
         return;
       }
 
-      if (step === sequence.length + 1) {
-        title.innerText = "AND I JUST HAVE ONE QUESTION;
-        text.innerText = "I am going to shoot my shot like I am stephen curry and ask...";
-        step++;
-        return;
-      }
-       if (step === sequence.length) {
-        title.innerText = "HAHAHAHAHA";
-        text.innerText = "Did you take a shower today? hehe";
-        step++;
-       }
-       if (step === sequence.length) {
-        title.innerText = "I AM SO SILLY (nonchalant btw)";
-        text.innerText = "okay but seriously...";
-        step++;
-        return;  
-       }  
-         return;      if (step === sequence.length + 2) {
-  document.getElementById("nextBtn").style.display = "none";
+      // 3) Final question screen
+      nextBtn.style.display = "none";
+      title.innerText = "shooting my shot cause YOLO";
+      text.innerText = "Will you be my Valentine?";
 
-  title.innerText = "**shooting my shot cause YOLO**";
-  text.innerText = "Will you be my Valentine?";
-  card.innerHTML += `
-    <br><br>
-    <button onclick="yesClicked()">Yes :)</button>
-    <button id="no" onmouseover="moveNo()">No :(</button>
-  `;
-  step++;
+      // Avoid adding buttons more than once
+      if (!document.getElementById("no")) {
+        card.innerHTML += `
+          <br><br>
+          <button onclick="yesClicked()">Yes :)</button>
+          <button id="no" onmouseover="moveNo()">No :(</button>
+        `;
       }
+
+      step++;
     }
 
     function yesClicked() {
@@ -178,6 +163,7 @@
           font-family:Arial;
           text-align:center;
           padding:40px;
+          box-sizing:border-box;
         ">
           <h1>
             I gave you an option to say No and you said Yes.<br><br>
@@ -196,6 +182,5 @@
       noBtn.style.transform = `translate(${x}px, ${y}px)`;
     }
   </script>
-
 </body>
 </html>
