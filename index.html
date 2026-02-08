@@ -141,11 +141,21 @@
         step++;
         return;
       }
-
-      if (step === sequence.length + 2) {
+       if (step === sequence.length) {
+        title.innerText = "HAHAHAHAHA";
+        text.innerText = "Did you take a shower today? hehe";
+        step++;
+       }
+       if (step === sequence.length) {
+        title.innerText = "I AM SO SILLY (nonchalant btw)";
+        text.innerText = "okay but seriously...";
+        step++;
+        return;  
+       }  
+         return;      if (step === sequence.length + 2) {
   document.getElementById("nextBtn").style.display = "none";
 
-  title.innerText = "With that being said";
+  title.innerText = "**shooting my shot cause YOLO**";
   text.innerText = "Will you be my Valentine?";
   card.innerHTML += `
     <br><br>
