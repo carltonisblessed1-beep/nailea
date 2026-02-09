@@ -66,11 +66,6 @@
       display: block;
       border-radius: 12px;
     }
-
-    /* second GIF hidden until question */
-    #questionGif {
-      display: none;
-    }
   </style>
 </head>
 
@@ -78,18 +73,10 @@
 
   <div class="card" id="card">
 
-    <!-- MAIN GIF -->
+    <!-- MAIN GIF (always visible) -->
     <img 
       src="https://c.tenor.com/zjPmY6uweNEAAAAC/tenor.gif"
       class="gif"
-      alt=""
-    >
-
-    <!-- SECOND GIF (shows only at the question) -->
-    <img 
-      src="https://c.tenor.com/zbuLCgaHFtoAAAAd/tenor.gif"
-      class="gif"
-      id="questionGif"
       alt=""
     >
 
@@ -129,7 +116,7 @@
       const title = document.getElementById("title");
       const text = document.getElementById("text");
       const nextBtn = document.getElementById("nextBtn");
-      const questionGif = document.getElementById("questionGif");
+      const card = document.getElementById("card");
 
       if (step < sequence.length) {
         title.innerText = "How well do i know you?";
@@ -142,12 +129,6 @@
       if (afterIndex >= 0 && afterIndex < after.length) {
         title.innerText = after[afterIndex].title;
         text.innerHTML = after[afterIndex].text;
-
-        // show second GIF only on the Valentine question
-        if (afterIndex === after.length - 1) {
-          questionGif.style.display = "block";
-        }
-
         step++;
         return;
       }
@@ -157,7 +138,7 @@
       text.innerHTML = "Will you be my Valentine?";
 
       if (!document.getElementById("no")) {
-        document.getElementById("card").innerHTML += `
+        card.innerHTML += `
           <br><br>
           <button onclick="yesClicked()">Yes :)</button>
           <button id="no" onmouseover="moveNo()">No :(</button>
@@ -187,9 +168,28 @@
             text-align:center;
             box-shadow:0 20px 40px rgba(0,0,0,0.25);
           ">
-            <img src="https://c.tenor.com/zjPmY6uweNEAAAAC/tenor.gif" class="gif" alt="">
+
+            <!-- YES SCREEN GIF (APPEARS HERE) -->
+            <img 
+              src="https://c.tenor.com/zbuLCgaHFtoAAAAd/tenor.gif"
+              class="gif"
+              alt=""
+            >
+
+            <p>awe… I gave you an option to say no,<br>and you said yes.</p>
+
             <p><strong>I AM SO RIZZY 😮‍💨</strong></p>
-            <p>Thank you for saying yes 🤍</p>
+
+            <p>
+              but in all seriousness —<br>
+              you are loved and cared for,<br>
+              <strong>Nailea Meza</strong>.
+            </p>
+
+            <p style="font-size:1.2rem; font-weight:600; color:#6495ed;">
+              because you are worth it,<br>
+              <strong>Nailea Meza 🩵</strong>
+            </p>
           </div>
         </div>
       `;
