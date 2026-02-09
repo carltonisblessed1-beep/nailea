@@ -74,10 +74,11 @@
   <div class="card" id="card">
 
     <!-- MAIN GIF (always visible) -->
-    <img 
+    <img
       src="https://c.tenor.com/zjPmY6uweNEAAAAC/tenor.gif"
       class="gif"
       alt=""
+      referrerpolicy="no-referrer"
     >
 
     <h1 id="title">Nailea 🤍</h1>
@@ -98,25 +99,38 @@
       "Your FAVORITE drinks are Dr Pepper, Strawberry Fanta, or Pineapple Fanta.",
       "You love golden shepherds, french bulldogs, corgis… basically any long, fluffy dog.",
       "And OH also horses, baby bears, red pandas, cheetahs, butterflies, otters 🦦… and pigs most particularly Waddles from Gravity Falls :).",
-      "Your FAVORITE flowers are lilies, hibiscus, dahlias, and sunflowers.",
-      "And I can keep going on and on but i think you get the point. (i know a lot about you, Nai :P)"
+      "Your FAVORITE flowers are lilies, hibiscus, dahlias, and sunflowers. (you read me of a sunflower)",
+      "And I can keep going on and on but i think you get the point. (i know a lot about you, Nai :P)",
+      "We often say this to each other from time and time...",
+      "That it didn’t take us long to know what we needed to know about each other.",
+      "That it felt like we’d known each other our whole lives.",
+      "AND IT IS HONESTLY SO TRUE :P, YK?",
+      "CAUSE IN A SHORT AMOUNT OF TIME.",
+      "You became someone i pray for every SINGLE day.",
+      "You became someone I can talk to about ANYTHING regardless of the topic.",
+      "You became someone in whom I admire and want nothing but the best.",
+      "You became someone I can come to when the world feels too cruel.",
+      "You became someone who can cheer me up in an INSTANT.",
+      "BUT TO TOP IT ALL OFF.",
+      "More than anything, in a short amount of time you became my BESTFRIEND :).",
+      "RANDOM THOUGHTS.",
+      "you have a beautiful heart.",
+      "it does not matter how many flaws you think you have i love them all. i see you and that is enough.",
+      "the closer I get to God, the closer i feel to you."
     ];
 
     const after = [
       { title: "SO YEAH!!!", text: "You are special to me or whatever... LOSER" },
       { title: "HAHAHAHAHA", text: "Did you take a shower today? hehe" },
       { title: "I AM SO SILLY (nonchalant btw)", text: "okay but seriously..." },
-      { 
-        title: "AND I JUST HAVE ONE QUESTION:", 
-        text: "I’d be really <strong>BLESSED</strong> if you said yes and let me be your Valentine?"
-      }
+      { title: "AND I JUST HAVE ONE QUESTION:", text: "I’d be really <strong>BLESSED</strong> if you said yes and let me be your Valentine?" }
     ];
 
     function nextStep() {
       const title = document.getElementById("title");
       const text = document.getElementById("text");
-      const nextBtn = document.getElementById("nextBtn");
       const card = document.getElementById("card");
+      const nextBtn = document.getElementById("nextBtn");
 
       if (step < sequence.length) {
         title.innerText = "How well do i know you?";
@@ -170,14 +184,15 @@
           ">
 
             <!-- YES SCREEN GIF (APPEARS HERE) -->
-            <img 
+            <img
               src="https://c.tenor.com/zbuLCgaHFtoAAAAd/tenor.gif"
               class="gif"
               alt=""
+              referrerpolicy="no-referrer"
+              onerror="this.style.display='none';"
             >
 
             <p>awe… I gave you an option to say no,<br>and you said yes.</p>
-
             <p><strong>I AM SO RIZZY 😮‍💨</strong></p>
 
             <p>
