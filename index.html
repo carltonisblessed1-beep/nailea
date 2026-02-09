@@ -66,6 +66,11 @@
       display: block;
       border-radius: 12px;
     }
+
+    /* second GIF hidden until question */
+    #questionGif {
+      display: none;
+    }
   </style>
 </head>
 
@@ -73,10 +78,18 @@
 
   <div class="card" id="card">
 
-    <!-- MAIN GIF (REPLACED) -->
+    <!-- MAIN GIF -->
     <img 
       src="https://c.tenor.com/zjPmY6uweNEAAAAC/tenor.gif"
       class="gif"
+      alt=""
+    >
+
+    <!-- SECOND GIF (shows only at the question) -->
+    <img 
+      src="https://c.tenor.com/zbuLCgaHFtoAAAAd/tenor.gif"
+      class="gif"
+      id="questionGif"
       alt=""
     >
 
@@ -98,38 +111,25 @@
       "Your FAVORITE drinks are Dr Pepper, Strawberry Fanta, or Pineapple Fanta.",
       "You love golden shepherds, french bulldogs, corgis… basically any long, fluffy dog.",
       "And OH also horses, baby bears, red pandas, cheetahs, butterflies, otters 🦦… and pigs most particularly Waddles from Gravity Falls :).",
-      "Your FAVORITE flowers are lilies, hibiscus, dahlias, and sunflowers. (you read me of a sunflower)",
-      "And I can keep going on and on but i think you get the point. (i know a lot about you, Nai :P)",
-      "We often say this to each other from time and time...",
-      "That it didn’t take us long to know what we needed to know about each other.",
-      "That it felt like we’d known each other our whole lives.",
-      "AND IT IS HONESTLY SO TRUE :P, YK?",
-      "CAUSE IN A SHORT AMOUNT OF TIME.",
-      "You became someone i pray for every SINGLE day.",
-      "You became someone I can talk to about ANYTHING regardless of the topic.",
-      "You became someone in whom I admire and want nothing but the best.",
-      "You became someone I can come to when the world feels too cruel.",
-      "You became someone who can cheer me up in an INSTANT.",
-      "BUT TO TOP IT ALL OFF.",
-      "More than anything, in a short amount of time you became my BESTFRIEND :).",
-      "RANDOM THOUGHTS.",
-      "you have a beautiful heart.",
-      "it does not matter how many flaws you think you have i love them all. i see you and that is enough.",
-      "the closer I get to God, the closer i feel to you."
+      "Your FAVORITE flowers are lilies, hibiscus, dahlias, and sunflowers.",
+      "And I can keep going on and on but i think you get the point. (i know a lot about you, Nai :P)"
     ];
 
     const after = [
       { title: "SO YEAH!!!", text: "You are special to me or whatever... LOSER" },
       { title: "HAHAHAHAHA", text: "Did you take a shower today? hehe" },
       { title: "I AM SO SILLY (nonchalant btw)", text: "okay but seriously..." },
-      { title: "AND I JUST HAVE ONE QUESTION:", text: "I am going to shoot my shot like I am stephen curry and ask..." }
+      { 
+        title: "AND I JUST HAVE ONE QUESTION:", 
+        text: "I’d be really <strong>BLESSED</strong> if you said yes and let me be your Valentine?"
+      }
     ];
 
     function nextStep() {
       const title = document.getElementById("title");
       const text = document.getElementById("text");
-      const card = document.getElementById("card");
       const nextBtn = document.getElementById("nextBtn");
+      const questionGif = document.getElementById("questionGif");
 
       if (step < sequence.length) {
         title.innerText = "How well do i know you?";
@@ -141,17 +141,23 @@
       const afterIndex = step - sequence.length;
       if (afterIndex >= 0 && afterIndex < after.length) {
         title.innerText = after[afterIndex].title;
-        text.innerText = after[afterIndex].text;
+        text.innerHTML = after[afterIndex].text;
+
+        // show second GIF only on the Valentine question
+        if (afterIndex === after.length - 1) {
+          questionGif.style.display = "block";
+        }
+
         step++;
         return;
       }
 
       nextBtn.style.display = "none";
-      title.innerText = "shooting my shot cause YOLO";
-      text.innerText = "Will you be my Valentine?";
+      title.innerText = "Just one last thing…";
+      text.innerHTML = "Will you be my Valentine?";
 
       if (!document.getElementById("no")) {
-        card.innerHTML += `
+        document.getElementById("card").innerHTML += `
           <br><br>
           <button onclick="yesClicked()">Yes :)</button>
           <button id="no" onmouseover="moveNo()">No :(</button>
@@ -182,48 +188,8 @@
             box-shadow:0 20px 40px rgba(0,0,0,0.25);
           ">
             <img src="https://c.tenor.com/zjPmY6uweNEAAAAC/tenor.gif" class="gif" alt="">
-
-            <p>awe… I gave you an option to say no,<br>and you said yes.</p>
             <p><strong>I AM SO RIZZY 😮‍💨</strong></p>
-
-            <p>
-              but in all seriousness —<br>
-              you are loved and cared for,<br>
-              <strong>Nailea Meza</strong>.
-            </p>
-
-            <p>
-              regardless of the distance,<br>
-              regardless of the uncertainty,<br>
-              my love never changed for you.
-            </p>
-
-            <p>
-              you are LEGEN…<br>
-              wait for it…<br>
-              <strong>DARY :0</strong>
-            </p>
-
-            <p>
-              as you see this the gifts are officially on the way.<br>
-              I hope you receive them with love — I carefully thought them through.
-            </p>
-
-            <p>
-              oh and in case you’re wondering how I made this…<br>
-              <strong>I CODED THE WHOLE THING.</strong>
-            </p>
-
-            <p>
-              how long did it take?<br>
-              <strong>3 full days.</strong>
-            </p>
-
-            <p style="font-size:1.2rem; font-weight:600; color:#6495ed;">
-              but it only felt like seconds<br>
-              because you are worth it,<br>
-              <strong>Nailea Meza 🩵</strong>
-            </p>
+            <p>Thank you for saying yes 🤍</p>
           </div>
         </div>
       `;
