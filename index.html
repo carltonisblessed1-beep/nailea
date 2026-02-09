@@ -36,6 +36,7 @@
     p {
       font-size: 1.1rem;
       line-height: 1.6;
+      white-space: pre-line;
       margin: 0 0 18px;
     }
 
@@ -71,131 +72,174 @@
 </head>
 
 <body>
+  <div class="card" id="card">
+    <img
+      id="mainGif"
+      src="https://c.tenor.com/zjPmY6uweNEAAAAC/tenor.gif"
+      class="gif"
+      alt=""
+    >
 
-<div class="card">
-  <img
-    id="mainGif"
-    src="https://c.tenor.com/zjPmY6uweNEAAAAC/tenor.gif"
-    class="gif"
-    alt=""
-  >
+    <h1 id="title">Nailea 🩵</h1>
+    <p id="text">Hey dork, this is something i made for you :O</p>
 
-  <h1 id="title">Nailea 🩵</h1>
-  <p id="text">Hey dork, this is something i made for you :O</p>
+    <button id="nextBtn">click me :O</button>
 
-  <button id="nextBtn">click me :O</button>
-
-  <div class="btnRow" id="finalBtns" style="display:none;">
-    <button id="yesBtn">Yes :)</button>
-    <button id="noBtn">No :(</button>
+    <div class="btnRow" id="finalBtns" style="display:none;">
+      <button id="yesBtn">Yes :)</button>
+      <button id="noBtn">No :(</button>
+    </div>
   </div>
-</div>
 
-<script>
-  let step = 0;
+  <script>
+    let step = 0;
 
-  const calmGif = "https://c.tenor.com/zjPmY6uweNEAAAAC/tenor.gif";
-  const shootersGif = "https://c.tenor.com/DKrSJZ-olzYAAAAC/tenor.gif";
+    const shootersGif = "https://c.tenor.com/DKrSJZ-olzYAAAAC/tenor.gif";
 
-  const sequence = [
-    "I could write books about you. if given the chance. you don't believe me?",
-    "Your FAVORITE numbers are 4, 9, and 21.",
-    "Your FAVORITE color is cornflower blue.",
-    "You LOVE coffee....",
-    "You LOVE green pasta, flautas, and gorditas…",
-    "Your FAVORITE snacks are Ferrero, Kit Kats, Kinder, Nutella B-Ready, Oreos, and Hot Fries",
-    "Your FAVORITE drinks are Dr Pepper, Strawberry Fanta, or Pineapple Fanta.",
-    "Basically ANY fluffy dog owns your heart.",
-    "And Waddles from Gravity Falls obviously.",
-    "You remind me of a sunflower.",
-    "I know a lot about you, Nai :P"
-  ];
+    const sequence = [
+      "I could write books about you. if given the chance. you don't believe me?",
+      "Your FAVORITE numbers are 4, 9, and 21.",
+      "Your FAVORITE color is cornflower blue. (WHICH IS SO RANDOM BUT SOMEHOW SCREAMS YOU.)",
+      "You LOVE coffee.... (yk ball).",
+      "You LOVE green pasta, flautas, and gorditas… (I WOULD COOK ALL OF THEM FOR YOU NO QUESTION.)",
+      "Your FAVORITE snacks are Ferrero, Kit Kats, Kinder, Nutella B-Ready, Oreos, and Hot Fries",
+      "Your FAVORITE drinks are Dr Pepper, Strawberry Fanta, or Pineapple Fanta.",
+      "You love golden shepherds, french bulldogs, corgis… basically ANY FLUFFY DOG.",
+      "And OH also horses 🐎, baby bears 🐻, red pandas, cheetahs 🐆, butterflies 🦋, otters 🦦 and pigs 🐷 most particularly Waddles from Gravity Falls :).",
+      "Your FAVORITE flowers are lilies, hibiscus, dahlias, and sunflowers. (you remind me of a sunflower)",
+      "And I can keep going on and on but i think you get the point. (i know a lot about you, Nai :P)"
+    ];
 
-  const after = [
-    { title: "SO YEAH!!!", text: "You are special to me or whatever... LOSER" },
-    { title: "I GOT ONE QUESTION", text: "Did you take a shower today? hehe" },
-    { title: "I AM SO SILLY", text: "okay but seriously..." },
-    {
-      title: "SHOOTERS SHOOT ⛹🏿‍♂️🏀",
-      html: "I’d be really <strong>BLESSED</strong> if you said yes and let me be your Valentine?"
-    }
-  ];
+    const after = [
+      { title: "SO YEAH!!!", text: "You are special to me or whatever... LOSER" },
+      { title: "I GOT ONE QUESTION", text: "Did you take a shower today? hehe" },
+      { title: "I AM SO SILLY (nonchalant btw)", text: "okay but seriously..." },
+      {
+        title: "SHOOTERS SHOOT ⛹🏿‍♂️🏀",
+        html: "I’d be really <strong>BLESSED</strong> if you said yes and let me be your Valentine?"
+      }
+    ];
 
-  const titleEl = document.getElementById("title");
-  const textEl = document.getElementById("text");
-  const nextBtn = document.getElementById("nextBtn");
-  const finalBtns = document.getElementById("finalBtns");
-  const yesBtn = document.getElementById("yesBtn");
-  const noBtn = document.getElementById("noBtn");
-  const gif = document.getElementById("mainGif");
+    const titleEl = document.getElementById("title");
+    const textEl  = document.getElementById("text");
+    const nextBtn = document.getElementById("nextBtn");
+    const finalBtns = document.getElementById("finalBtns");
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn  = document.getElementById("noBtn");
+    const gif    = document.getElementById("mainGif");
 
-  nextBtn.onclick = nextStep;
-  yesBtn.onclick = yesClicked;
-  noBtn.onmouseover = moveNo;
-  noBtn.onclick = moveNo;
+    nextBtn.onclick = nextStep;
+    yesBtn.onclick = yesClicked;
+    noBtn.onmouseover = moveNo;
+    noBtn.onclick = moveNo;
 
-  function nextStep() {
-    if (step < sequence.length) {
-      titleEl.innerText = "How well do i know you?";
-      textEl.innerText = sequence[step];
-      step++;
-      return;
-    }
-
-    const idx = step - sequence.length;
-    if (idx < after.length) {
-      titleEl.innerText = after[idx].title;
-      textEl.innerHTML = after[idx].html || after[idx].text;
-
-      // 👇 ONLY change GIF at SHOOTERS SHOOT
-      if (after[idx].title.includes("SHOOTERS SHOOT")) {
-        gif.src = shootersGif;
+    function nextStep() {
+      if (step < sequence.length) {
+        titleEl.innerText = "How well do i know you?";
+        textEl.innerText = sequence[step];
+        step++;
+        return;
       }
 
-      step++;
-      return;
+      const afterIndex = step - sequence.length;
+      if (afterIndex >= 0 && afterIndex < after.length) {
+        titleEl.innerText = after[afterIndex].title;
+        textEl.innerHTML = after[afterIndex].html || after[afterIndex].text;
+
+        if (after[afterIndex].title === "SHOOTERS SHOOT ⛹🏿‍♂️🏀") {
+          gif.src = shootersGif;
+        }
+
+        step++;
+        return;
+      }
+
+      nextBtn.style.display = "none";
+      finalBtns.style.display = "block";
     }
 
-    nextBtn.style.display = "none";
-    finalBtns.style.display = "block";
-  }
-
-  function yesClicked() {
-    document.body.innerHTML = `
-      <div style="
-        min-height:100vh;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        background:#6495ed;
-        padding:40px;
-        font-family:Arial;
-      ">
+    function yesClicked() {
+      document.body.innerHTML = `
         <div style="
-          background:white;
+          min-height:100vh;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          background:linear-gradient(135deg, #6495ed, #6495ed);
           padding:40px;
-          border-radius:20px;
-          max-width:520px;
-          text-align:center;
+          box-sizing:border-box;
+          font-family: Arial, sans-serif;
         ">
-          <img src="https://c.tenor.com/zbuLCgaHFtoAAAAd/tenor.gif"
-               style="width:180px;border-radius:12px;margin-bottom:20px;">
-          <p>awe… I gave you an option to say no,<br>and you said yes.</p>
-          <p style="font-weight:600;">I AM SO RIZZY 😮‍💨</p>
-          <p style="color:#6495ed;font-weight:600;">
-            because you're worth it,<br>
-            <strong>Nailea Meza 🩵</strong>
-          </p>
+          <div style="
+            background:white;
+            padding:40px;
+            border-radius:20px;
+            max-width:520px;
+            width:100%;
+            text-align:center;
+            box-shadow:0 20px 40px rgba(0,0,0,0.25);
+          ">
+
+            <img 
+              src="https://c.tenor.com/zbuLCgaHFtoAAAAd/tenor.gif"
+              class="gif"
+              alt=""
+            >
+
+            <p>awe… I gave you an option to say no,<br>and you said yes.</p>
+
+            <p style="font-weight:600;">I AM SO RIZZY 😮‍💨</p>
+
+            <p>
+              but in all seriousness —<br>
+              you are loved and cared for,<br>
+              <strong>Nailea Meza</strong>.
+            </p>
+
+            <p>
+              regardless of the distance,<br>
+              regardless of the uncertainty,<br>
+              my love for you never changed.
+            </p>
+
+            <p>
+              you are LEGEN…<br>
+              wait for it…<br>
+              <strong>DARY 😌</strong>
+            </p>
+
+            <p>
+              as you’re reading this, the gifts are officially on the way.<br>
+              I hope you receive them with love,<br>
+              because I carefully thought each one through.
+            </p>
+
+            <p>
+              oh — and in case you’re wondering how I made this…<br>
+              <strong>I coded the whole thing.</strong>
+            </p>
+
+            <p>
+              how long did it take?<br>
+              two full days (yes I timed it… 49 hours to be exact).
+            </p>
+
+            <p style="font-size:1.2rem; font-weight:600; color:#6495ed;">
+              but you know what?<br>
+              it only felt like seconds because you're worth it<br>
+              <strong>Nailea Meza 🩵</strong>
+            </p>
+
+          </div>
         </div>
-      </div>
-    `;
-  }
+      `;
+    }
 
-  function moveNo() {
-    noBtn.style.transform =
-      `translate(${Math.random()*140-70}px, ${Math.random()*140-70}px)`;
-  }
-</script>
-
+    function moveNo() {
+      const x = Math.random() * 140 - 70;
+      const y = Math.random() * 140 - 70;
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    }
+  </script>
 </body>
 </html>
