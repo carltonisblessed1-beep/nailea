@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>To Nailea Meza :)</title>
 
   <style>
@@ -72,11 +72,11 @@
 <body>
 
   <div class="card" id="card">
-    <!-- GIF AT THE TOP -->
+    <!-- WORKING GIF -->
     <img 
-      src="https://tenor.com/oILaewiVhay.gif" 
-      alt="vibe gif" 
+      src="https://c.tenor.com/PLhJRbZrqPgAAAAd/tenor.gif"
       class="gif"
+      alt=""
     >
 
     <h1 id="title">Nailea 🤍</h1>
@@ -130,7 +130,6 @@
       const card = document.getElementById("card");
       const nextBtn = document.getElementById("nextBtn");
 
-      // Main sequence
       if (step < sequence.length) {
         title.innerText = "How well do i know you?";
         text.innerText = sequence[step];
@@ -138,7 +137,6 @@
         return;
       }
 
-      // Extra screens
       const afterIndex = step - sequence.length;
       if (afterIndex >= 0 && afterIndex < after.length) {
         title.innerText = after[afterIndex].title;
@@ -147,7 +145,6 @@
         return;
       }
 
-      // Final question
       nextBtn.style.display = "none";
       title.innerText = "shooting my shot cause YOLO";
       text.innerText = "Will you be my Valentine?";
@@ -183,7 +180,7 @@
             text-align:center;
             box-shadow:0 20px 40px rgba(0,0,0,0.25);
           ">
-            <img src="https://tenor.com/oILaewiVhay.gif" class="gif">
+            <img src="https://c.tenor.com/PLhJRbZrqPgAAAAd/tenor.gif" class="gif" alt="">
 
             <p>awe… I gave you an option to say no,<br>and you said yes.</p>
 
