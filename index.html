@@ -146,6 +146,7 @@
         titleEl.innerText = after[afterIndex].title;
         textEl.innerHTML = after[afterIndex].html || after[afterIndex].text;
 
+        // ONLY ADDITION: change GIF at SHOOTERS SHOOT
         if (after[afterIndex].title === "SHOOTERS SHOOT ⛹🏿‍♂️🏀") {
           gif.src = shootersGif;
         }
