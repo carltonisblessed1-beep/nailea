@@ -36,6 +36,7 @@
       font-size: 1.1rem;
       line-height: 1.6;
       white-space: pre-line;
+      margin: 0 0 18px; /* consistent spacing */
     }
 
     button {
@@ -78,6 +79,7 @@
       class="gif"
       alt=""
       referrerpolicy="no-referrer"
+      onerror="this.style.display='none';"
     >
 
     <h1 id="title">Nailea 🤍</h1>
@@ -89,7 +91,7 @@
     let step = 0;
 
     const sequence = [
-      "I could write books about you. if given the chance. you dont't believe me?",
+      "I could write books about you. if given the chance. you don't believe me?",
       "Your FAVORITE numbers are 4, 9, and 21.",
       "Your FAVORITE color is cornflower blue. (WHICH IS SO RANDOM BUT SOMEHOW SCREAMS YOU.)",
       "You LOVE coffee.... (yk ball).",
@@ -141,7 +143,7 @@
         card.innerHTML += `
           <br><br>
           <button onclick="yesClicked()">Yes :)</button>
-          <button id="no" onmouseover="moveNo()">No :(</button>
+          <button id="no" onmouseover="moveNo()" onclick="moveNo()">No :(</button>
         `;
       }
 
@@ -174,6 +176,7 @@
               class="gif"
               alt=""
               referrerpolicy="no-referrer"
+              onerror="this.style.display='none';"
             >
 
             <p>awe… I gave you an option to say no,<br>and you said yes.</p>
@@ -205,19 +208,19 @@
             </p>
 
             <p>
-              oh and in case you’re wondering how I made this…<br>
+              oh — and in case you’re wondering how I made this…<br>
               <strong>I coded the whole thing.</strong>
             </p>
 
             <p>
               how long did it take?<br>
-              two full days.
+              three full days.
             </p>
 
             <p style="font-size:1.2rem; font-weight:600; color:#6495ed;">
               but you know what?<br>
               it only felt like seconds because you're worth it<br>
-              <strong>Nailea Meza 🩵 by CNW</strong>
+              <strong>Nailea Meza 🩵</strong>
             </p>
 
           </div>
