@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>To Nailea Meza :)</title>
 
   <style>
@@ -29,7 +30,7 @@
 
     h1 {
       font-size: 1.9rem;
-      margin-bottom: 15px;
+      margin: 0 0 15px;
     }
 
     p {
@@ -37,6 +38,13 @@
       line-height: 1.6;
       white-space: pre-line;
       margin: 0 0 18px;
+    }
+
+    .gif {
+      width: 180px;
+      margin: 15px auto 25px;
+      display: block;
+      border-radius: 12px;
     }
 
     button {
@@ -47,34 +55,25 @@
       cursor: pointer;
       background: #2a52be;
       color: white;
-      transition: 0.3s ease;
+      transition: 0.2s ease;
     }
 
-    button:hover {
-      transform: scale(1.08);
-    }
+    button:hover { transform: scale(1.06); }
 
     #no {
       background: #ddd;
       color: #555;
       margin-left: 10px;
+      position: relative; /* so translate stays anchored */
     }
 
-    .gif {
-      width: 180px;
-      margin: 15px auto 25px;
-      display: block;
-      border-radius: 12px;
-    }
+    .btnRow { margin-top: 10px; }
   </style>
 </head>
 
 <body>
-
   <div class="card" id="card">
-
-    <!-- MAIN GIF -->
-    <img 
+    <img
       src="https://c.tenor.com/zjPmY6uweNEAAAAC/tenor.gif"
       class="gif"
       alt=""
@@ -82,12 +81,21 @@
       onerror="this.style.display='none';"
     >
 
-    <h1 id="title">Nailea 🤍</h1>
+    <h1 id="title">Nailea 🩵</h1>
     <p id="text">Hey dork, this is something i made for you :O</p>
-    <button id="nextBtn" onclick="nextStep()">click me :O</button>
+
+    <button id="nextBtn">click me :O</button>
+
+    <div class="btnRow" id="finalBtns" style="display:none;">
+      <button id="yesBtn">Yes :)</button>
+      <button id="noBtn">No :(</button>
+    </div>
   </div>
 
   <script>
+    // If you want: uncomment this to confirm JS runs
+    // alert("JS is running");
+
     let step = 0;
 
     const sequence = [
@@ -95,12 +103,12 @@
       "Your FAVORITE numbers are 4, 9, and 21.",
       "Your FAVORITE color is cornflower blue. (WHICH IS SO RANDOM BUT SOMEHOW SCREAMS YOU.)",
       "You LOVE coffee.... (yk ball).",
-      "You LOVE green pasta, flautas, and gorditas… (I WOULD COOK ALL OF THEM FOR YOU NO QUESTION.)",
+      "You LOVE green pasta, flautas, and gorditas... (I WOULD COOK ALL OF THEM FOR YOU NO QUESTION.)",
       "Your FAVORITE snacks are Ferrero, Kit Kats, Kinder, Nutella B-Ready, Oreos, and Hot Fries",
       "Your FAVORITE drinks are Dr Pepper, Strawberry Fanta, or Pineapple Fanta.",
-      "You love golden shepherds, french bulldogs, corgis… basically any long, fluffy dog.",
-      "And OH also horses, baby bears, red pandas, cheetahs, butterflies, otters 🦦… and pigs most particularly Waddles from Gravity Falls :).",
-      "Your FAVORITE flowers are lilies, hibiscus, dahlias, and sunflowers.",
+      "You love golden shepherds, french bulldogs, corgis... basically ANY FLUFFY DOG.",
+      "And OH also horses 🐎, baby bears 🐻, red pandas, cheetahs 🐆, butterflies 🦋, otters 🦦 and pigs 🐷 most particularly Waddles from Gravity Falls :).",
+      "Your FAVORITE flowers are lilies, hibiscus, dahlias, and sunflowers. (you remind me of a sunflower)",
       "And I can keep going on and on but i think you get the point. (i know a lot about you, Nai :P)"
     ];
 
@@ -108,45 +116,52 @@
       { title: "SO YEAH!!!", text: "You are special to me or whatever... LOSER" },
       { title: "HAHAHAHAHA", text: "Did you take a shower today? hehe" },
       { title: "I AM SO SILLY (nonchalant btw)", text: "okay but seriously..." },
-      { 
-        title: "AND I JUST HAVE ONE QUESTION:", 
-        text: "I’d be really <strong>BLESSED</strong> if you said yes and let me be your Valentine?"
+      {
+        title: "AND I JUST HAVE ONE QUESTION:",
+        html: "I’d be really <strong>BLESSED</strong> if you said yes and let me be your Valentine?"
       }
     ];
 
-    function nextStep() {
-      const title = document.getElementById("title");
-      const text = document.getElementById("text");
-      const nextBtn = document.getElementById("nextBtn");
-      const card = document.getElementById("card");
+    const titleEl = document.getElementById("title");
+    const textEl  = document.getElementById("text");
+    const nextBtn = document.getElementById("nextBtn");
+    const finalBtns = document.getElementById("finalBtns");
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn  = document.getElementById("noBtn");
+    const card   = document.getElementById("card");
 
+    nextBtn.addEventListener("click", nextStep);
+    yesBtn.addEventListener("click", yesClicked);
+
+    // move "No" on hover (desktop) and click (mobile)
+    noBtn.addEventListener("mouseover", moveNo);
+    noBtn.addEventListener("click", moveNo);
+
+    function nextStep() {
       if (step < sequence.length) {
-        title.innerText = "How well do i know you?";
-        text.innerText = sequence[step];
+        titleEl.innerText = "How well do i know you?";
+        textEl.innerText = sequence[step];
         step++;
         return;
       }
 
       const afterIndex = step - sequence.length;
       if (afterIndex >= 0 && afterIndex < after.length) {
-        title.innerText = after[afterIndex].title;
-        text.innerHTML = after[afterIndex].text;
+        titleEl.innerText = after[afterIndex].title;
+        if (after[afterIndex].html) {
+          textEl.innerHTML = after[afterIndex].html;
+        } else {
+          textEl.innerText = after[afterIndex].text;
+        }
         step++;
         return;
       }
 
+      // Final question screen
       nextBtn.style.display = "none";
-      title.innerText = "Just one last thing…";
-      text.innerHTML = "Will you be my Valentine?";
-
-      if (!document.getElementById("no")) {
-        card.innerHTML += `
-          <br><br>
-          <button onclick="yesClicked()">Yes :)</button>
-          <button id="no" onmouseover="moveNo()" onclick="moveNo()">No :(</button>
-        `;
-      }
-
+      titleEl.innerText = "Just one last thing...";
+      textEl.innerHTML = "Will you be my Valentine?";
+      finalBtns.style.display = "block";
       step++;
     }
 
@@ -160,6 +175,7 @@
           background:linear-gradient(135deg, #6495ed, #6495ed);
           padding:40px;
           box-sizing:border-box;
+          font-family: Arial, sans-serif;
         ">
           <div style="
             background:white;
@@ -171,16 +187,15 @@
             box-shadow:0 20px 40px rgba(0,0,0,0.25);
           ">
 
-            <img 
+            <img
               src="https://c.tenor.com/zbuLCgaHFtoAAAAd/tenor.gif"
-              class="gif"
+              style="width:180px;margin:15px auto 25px;display:block;border-radius:12px;"
               alt=""
               referrerpolicy="no-referrer"
               onerror="this.style.display='none';"
             >
 
-            <p>awe… I gave you an option to say no,<br>and you said yes.</p>
-
+            <p>awe... I gave you an option to say no,<br>and you said yes.</p>
             <p style="font-weight:600;">I AM SO RIZZY 😮‍💨</p>
 
             <p>
@@ -196,8 +211,8 @@
             </p>
 
             <p>
-              you are LEGEN…<br>
-              wait for it…<br>
+              you are LEGEN...<br>
+              wait for it...<br>
               <strong>DARY 😌</strong>
             </p>
 
@@ -208,13 +223,13 @@
             </p>
 
             <p>
-              oh — and in case you’re wondering how I made this…<br>
+              oh — and in case you’re wondering how I made this...<br>
               <strong>I coded the whole thing.</strong>
             </p>
 
             <p>
               how long did it take?<br>
-              two full days (yes I timed it… 49 hours to be exact).
+              two full days (yes I timed it... 49 hours to be exact).
             </p>
 
             <p style="font-size:1.2rem; font-weight:600; color:#6495ed;">
@@ -229,12 +244,10 @@
     }
 
     function moveNo() {
-      const noBtn = document.getElementById("no");
-      const x = Math.random() * 200 - 100;
-      const y = Math.random() * 200 - 100;
+      const x = Math.random() * 140 - 70;
+      const y = Math.random() * 140 - 70;
       noBtn.style.transform = `translate(${x}px, ${y}px)`;
     }
   </script>
-
 </body>
 </html>
